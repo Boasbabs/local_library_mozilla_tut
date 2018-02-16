@@ -1,0 +1,32 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+/* ROOT FONT STYLES */
+
+* {
+    font-family: 'Lato', Helvetica, sans-serif;
+    color: #FBFDFF;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+body {
+    /*background: #1dd1a1 no-repeat right bottom;*/
+    background: #FE7880;
+    background-image: linear-gradient(#F38BD3, #FE7880);
+    background-repeat: no-repeat;
+}
+a {
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    text-decoration: line-through;
+}
+
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
