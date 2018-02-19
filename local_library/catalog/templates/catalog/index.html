@@ -2,18 +2,25 @@
 {% block title %}<title>Local Library Home Page</title>{% endblock %}
 
 {% block content %}
-<h1>Local Library Home</h1>
+    <h1>Local Library Home</h1>
 
-  <p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+    {% if user.is_authenticated %}
+        <h4>Hello {{ user.get_username }}</h4>
 
-<h2>Dynamic content</h2>
+    {% else %}
+        <h4>You are not login. Please <a href="{% url 'login'%}?next={{request.path}}">Login</a></h4>
+    {% endif %}
+    </ul>
+    <p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
 
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-  </ul>
-<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time {% else %} times {% endif %}</p>
+    <h2>Dynamic content</h2>
+
+    <p>The library has the following record counts:</p>
+    <ul>
+        <li><strong>Books:</strong> {{ num_books }}</li>
+        <li><strong>Copies:</strong> {{ num_instances }}</li>
+        <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+        <li><strong>Authors:</strong> {{ num_authors }}</li>
+    </ul>
+    <p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time {% else %} times {% endif %}</p>
 {% endblock %}

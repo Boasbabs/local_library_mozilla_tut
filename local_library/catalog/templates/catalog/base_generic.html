@@ -25,31 +25,39 @@
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'books' %}">All books</a></li>
                     <li><a href="{% url 'authors' %}">All authors</a></li>
+                    {% if user.is_authenticated %}
+                        <li>User: {{ user.get_username }}</li>
+                        <li><a href="{% url 'my-borrowed' %}">My Borrowed books</a></li>
+                        <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+                    {% endif %}
+                </ul>
                 </ul>
             {% endblock %}
         </div>
         <div class="col-sm-10 ">
             {% block content %}{% endblock %}
             <nav aria-label="Page navigation">
-            {% block pagination %}
-                {% if is_paginated %}
-                    <ul class="pagination">
+                {% block pagination %}
+                    {% if is_paginated %}
+                        <ul class="pagination">
                             <li class="page-item">
-                            {% if page_obj.has_previous %}
-                                <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                            {% endif %}
+                                {% if page_obj.has_previous %}
+                                    <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
                             </li>
                             <li class="page-item active">
                                 <a class="page-link" href="">page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
                             </li>
                             <li class="page-item">
-                            {% if page_obj.has_next %}
-                                <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                            {% endif %}
+                                {% if page_obj.has_next %}
+                                    <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                                {% endif %}
                             </li>
-                    </ul>
-                {% endif %}
-            {% endblock %}
+                        </ul>
+                    {% endif %}
+                {% endblock %}
             </nav>
 
         </div>
