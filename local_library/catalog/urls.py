@@ -10,6 +10,9 @@ urlpatterns = [
 
     # To view borrowed books
     path("mybooks/", views.LoanedBooksByUserListView.as_view(), name="my-borrowed"),
+
+    # To view renew-books page as "/catalog/book/<bookinstance_id>/renew/
+    path("book/<uuid:pk>/renew/", views.renew_book_librarian, name="renew-book-librarian"),
 ]
 
 
